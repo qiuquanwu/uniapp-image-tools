@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "vite-vanilla-ts-lib-starter" project will be documented in this file.
+All notable changes to the "uniapp-image-tools" project will be documented in this file.
 
 ## [0.0.5] - 2025-02-26
 

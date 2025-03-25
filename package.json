@@ -1,16 +1,23 @@
 {
-  "name": "vite-vanilla-ts-lib-starter",
-  "private": true,
-  "version": "0.0.5",
-  "module": "./dist/vite-vanilla-ts-lib-starter.js",
+  "name": "uniapp-image-tools",
+  "version": "1.0.0",
+  "module": "./dist/uniapp-image-tools.js",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/vite-vanilla-ts-lib-starter.js"
+      "import": "./dist/uniapp-image-tools.js"
     },
     "./dist/": {
       "import": "./dist/"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qiuquanwu/uniapp-image-tools"
+  },
+  "author": {
+    "name": "qiuquanwu",
+    "email": "919403255@qq.com"
   },
   "types": "./dist/index.d.ts",
   "scripts": {

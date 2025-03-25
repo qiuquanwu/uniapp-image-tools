@@ -1,61 +1,48 @@
-# vite-vanilla-ts-lib-starter
+# uniapp-image-tools
 
-The starter is built on top of Vite 6.x and prepared for writing libraries in TypeScript. It generates a package with support for ESM modules and IIFE.
+## 核心功能
+- **路径转换**：自动处理不同平台的文件路径格式
+- **Base64互转**：支持文件路径与Base64数据的双向转换
+- **多平台兼容**：支持浏览器、uni-app、微信小程序三端运行
 
-## Features
-
-- ESM modules
-- IIFE bundle for direct browser support without bundler
-- Typings bundle
-- ESLint - scripts linter
-- Stylelint - styles linter
-- Prettier - formatter
-- Vitest - test framework
-- Husky + lint-staged - pre-commit git hook set up for formatting
-
-## GitHub Template
-
-This is a template repo. Click the green [Use this template](https://github.com/kbysiec/vite-vanilla-ts-lib-starter/generate) button to get started.
-
-## Clone to local
-
-If you prefer to do it manually with the cleaner git history
-
+## 安装使用
 ```bash
-git clone https://github.com/kbysiec/vite-vanilla-ts-lib-starter.git
-cd vite-vanilla-ts-lib-starter
-npm i
+npm install uniapp-image-tools
+```
+```typescript
+import { pathToBase64, base64ToPath } from 'uniapp-image-tools'
+
+// 浏览器环境示例
+const img = document.getElementById('demo-img')
+img.src = await pathToBase64('./logo.png')
 ```
 
-## Checklist
+## API文档
 
-When you use this template, update the following:
+### pathToBase64(path: string): Promise<string>
+- 参数：文件路径（支持相对路径和绝对路径）
+- 返回值：包含Base64数据的DataURL字符串
 
-- Remove `.git` directory and run `git init` to clean up the history
-- Change the name in `package.json` - it will be the name of the IIFE bundle global variable and bundle files name (`.cjs`, `.mjs`, `.iife.js`, `d.ts`)
-- Change the author name in `LICENSE`
-- Clean up the `README` and `CHANGELOG` files
+### base64ToPath(base64: string): Promise<string>
+- 参数：标准Base64字符串或DataURL
+- 返回值：平台对应的本地文件路径
 
-And, enjoy 😊
+## 运行环境要求
+- TypeScript 4.0+
+- Node.js 14+
+- 支持平台：
+  - 浏览器（支持FileAPI的现代浏览器）
+  - uni-app（需集成5+ SDK）
+  - 微信小程序（基础库2.10.0+）
 
-## Usage
+## 多平台兼容性
+| 平台        | 支持版本               | 依赖条件                  |
+|-----------|--------------------|-----------------------|
+| 浏览器       | Chrome 76+         | 支持FileReader API      |
+| uni-app    | HBuilderX 3.1.0+   | 需添加5+模块依赖            |
+| 微信小程序    | 基础库2.10.0+       | 需开启「增强编译」选项          |
 
-The starter contains the following scripts:
-
-- `dev` - starts dev server
-- `build` - generates the following bundles: ESM (`.js`) and IIFE (`.iife.js`). The name of bundle is automatically taken from `package.json` name property
-- `test` - starts vitest and runs all tests
-- `test:coverage` - starts vitest and run all tests with code coverage report
-- `lint:scripts` - lint `.ts` files with eslint
-- `lint:styles` - lint `.css` and `.scss` files with stylelint
-- `format:scripts` - format `.ts`, `.html` and `.json` files with prettier
-- `format:styles` - format `.cs` and `.scss` files with stylelint
-- `format` - format all with prettier and stylelint
-- `prepare` - script for setting up husky pre-commit hook
-- `uninstall-husky` - script for removing husky from repository
-
-## Acknowledgment
-
-If you found it useful somehow, I would be grateful if you could leave a star in the project's GitHub repository.
-
-Thank you.
+## 注意事项
+1. iOS平台需要配置manifest.json的本地路径访问权限
+2. 微信小程序需在app.json中声明writeFile权限
+3. 浏览器环境需处理跨域问题
