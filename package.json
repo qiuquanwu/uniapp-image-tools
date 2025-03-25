@@ -1,7 +1,8 @@
 {
   "name": "uniapp-image-tools",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "module": "./dist/uniapp-image-tools.js",
+  "main": "./dist/uniapp-image-tools.cjs",
   "type": "module",
   "exports": {
     ".": {
